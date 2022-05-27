@@ -2,10 +2,10 @@
 """
 #------------------------ZONA DE CÓDIGO------------------------
 
-""" esta funcion recibe una informacion de cliente dada en forma de diccionario y retorna un diccionario con 
+""" esta función recibe una informacion de cliente dada en forma de diccionario y retorna un diccionario con 
     una nueva variedad de datos, como el nuevo costo de boleta, si es o no apto para ingreso
     
-    Parámetros: informacion (dict): diccionario con el listado de parametros con la forma: [id_client,nombre,edad,primer_ingreso]              
+    Parámetros: informacion (dict): diccionario con el listado de parámetros con la forma: [id_client,nombre,edad,primer_ingreso]              
     retorna:    nuevoDiccionario (Dict): diccionario con el listados de productos de la forma: [nombre,edad,atraccion,apto,primer_ingreso,total_boleta]
 """
 def cliente(informacion:dict)->dict:

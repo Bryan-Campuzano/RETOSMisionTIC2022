@@ -1,7 +1,7 @@
 """ Resolución del reto 1
 """
 
-""" esta funcion calcula el valor de las ganancias o perdidas de un CDT dependiendo de los valores dados
+""" esta función calcula el valor de las ganancias o perdidas de un CDT dependiendo de los valores dados
 
     Parámetros: usuario (str): alfanumérico que identifica el usurario 
             capital (int): Monto a ingresar 

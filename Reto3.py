@@ -30,7 +30,7 @@ ventas3 = [
 #------------------------SOLUCIÓN 1 (NOTA OBTENIDA: 4,17)------------------------
 """ este método toma una lista de tuplas referente al registro de cada venta realizada y genera un diccionario
     con todas estas ventas indexadas 
-        parametros: ventas(List): lista que contiene las tuplas con la informacion de cada venta realizada
+        parámetros: ventas(List): lista que contiene las tuplas con la informacion de cada venta realizada
         
         retorna: diccionarioTemp(dict): diccionario con los datos de las ventas, indexado con llaves para su organización
 """
@@ -40,10 +40,10 @@ def AutoPartes(ventas: list):
         diccionarioTemp.setdefault(i,ventas[i])
     return diccionarioTemp
     
-""" este método recibe como parametro una lista, la cual es pasada por el método AutoPartes() para su indexacion
+""" este método recibe como parámetro una lista, la cual es pasada por el método AutoPartes() para su indexacion
     ademas de un entero idProducto, numero de identificación único por pieza y retorna todas las ventas realizadas
     de este producto, mensaje de error de no encontrar ninguna venta realizada bajo este id de producto
-        parametros: ventas(List): lista que contiene las tuplas con la informacion de cada venta realizada
+        parámetros: ventas(dict): lista que contiene las tuplas con la informacion de cada venta realizada
                     idProducto(int): numero de identificación único por pieza
         retorna:    temp(str): string de la forma 
                     'Producto consultado : IdProducto Descripción dProducto #Parte pnProducto Cantidad vendida cvProducto Stock sProducto Comprador nComprador Documento cComprador Fecha Venta fVenta' 
@@ -54,9 +54,8 @@ def AutoPartes(ventas: list):
 def consultaRegistro(ventas, idProducto): 
     temp = ""
     cantidadRetorno = 0
-    dicTemp = AutoPartes(ventas)
-    for i in range(0,len(dicTemp)):
-            venta = (dicTemp[i])
+    for i in range(0,len(ventas)):
+            venta = (ventas[i])
             if (venta[0] == idProducto): 
                 temp = f"Producto consultado : {venta[0]}  Descripción  {venta[1]}  #Parte  {venta[2]}  Cantidad vendida  {venta[3]}  Stock  {venta[4]}  Comprador {venta[5]}  Documento  {venta[6]}  Fecha Venta  {venta[7]}"
                 print(temp)
@@ -69,27 +68,38 @@ def consultaRegistro(ventas, idProducto):
                 pass    
            
 #-------------------------ZONA DE TEST 1-------------------------
-#print("----------------separador-------------@------")
-#print(consultaRegistro(ventas1,2010))
-#print(consultaRegistro(ventas2,2001))
-#print(consultaRegistro(ventas3,9852))
-#print("----------------separador--------------@-----")
+print("----------------separador-------------@------")
+consultaRegistro(AutoPartes(ventas1),2010)
+consultaRegistro(AutoPartes(ventas2),2001)
+consultaRegistro(AutoPartes(ventas3),9852)
+print("----------------separador--------------@-----")
 
-#------------------------SOLUCIÓN 2 (NOTA: PENDIENTE)------------------------
+#------------------------SOLUCIÓN 2 (NOTA: 5.0)------------------------
 #------------------------ZONA DE CÓDIGO 2------------------------
 """ este método toma una lista de tuplas referente al registro de cada venta realizada y genera un diccionario
     con todas estas ventas indexadas 
-        parametros: ventas(List): lista que contiene las tuplas con la informacion de cada venta realizada
+        parámetros: ventas(List): lista que contiene las tuplas con la informacion de cada venta realizada
         
         retorna: diccionarioTemp(dict): diccionario con los datos de las ventas, indexado con llaves para su organización
 """
 def AutoPartes2(ventas: list):
-    pass
+#   el cambio mas importante entre la solución propuesta y mi solución anterior es que cada elemento en el 
+#   diccionario es guardado como una lista cuya llave es el id del producto, teniendo pues una lista de 
+#   tuplas, cada tupla con la informacion de la venta, haciendo pues que en cada id de producto
+#   se guarden todos los registros de ventas, a diferencia del diccionario de AutoPartes, que almacenaba cada venta
+#   individualmente
+    diccionario = {}
+    for i in ventas:
+        if diccionario.get(i[0]) == None:
+            diccionario[i[0]] = []
+        diccionario[i[0]].append((i[1],i[2],i[3],i[4],i[5],i[6],i[7]))
+    
+    return diccionario
 
-""" este método recibe como parametro una lista, la cual es pasada por el método AutoPartes() para su indexacion
+""" este método recibe como parámetro una lista, la cual es pasada por el método AutoPartes() para su indexacion
     ademas de un entero idProducto, numero de identificación único por pieza y retorna todas las ventas realizadas
     de este producto, mensaje de error de no encontrar ninguna venta realizada bajo este id de producto
-        parametros: ventas(List): lista que contiene las tuplas con la informacion de cada venta realizada
+        parámetros: ventas(List): lista que contiene las tuplas con la informacion de cada venta realizada
                     idProducto(int): numero de identificación único por pieza
         retorna:    temp(str): string de la forma 
                     'Producto consultado : IdProducto Descripción dProducto #Parte pnProducto Cantidad vendida cvProducto Stock sProducto Comprador nComprador Documento cComprador Fecha Venta fVenta' 
@@ -98,7 +108,22 @@ def AutoPartes2(ventas: list):
                     cuando no encuentra ventas bajo el id proporcionado
 """
 def consultaRegistro2(ventas, idProducto):
-    pass
+#   en este caso no falla en el recorrido del diccionario como el original, pues, Autopartes fallaba pues no permitía hacer todas esas iteraciones
+#   de recorrido, pues hacer 2600 recorridos mínimo por cada elemento resultaba muy pesado, por eso se opto por no hacerlo de esta manera en la primera
+#   solución, por esto se almacenaba cada venta por aparte con un entero estándar comenzando desde cero
+#   pero eso se soluciona almacenando todas las ventas en un mismo idProducto gracias a una lista de tuplas hecha en Autopartes2
+#   y para retornar todas las ventas de cada producto, unicamente recorremos los elementos de la lista obtenida 
+    if idProducto in ventas:
+        for i in (ventas[idProducto]):
+            print(f"Producto consultado : {idProducto}  Descripción  {i[0]}  #Parte  {i[1]}  Cantidad vendida  {i[2]}  Stock  {i[3]}  Comprador {i[4]}  Documento  {i[5]}  Fecha Venta  {i[6]}")
+    else:
+        print('No hay registro de venta de ese producto')
 
 #-------------------------ZONA DE TEST 2-------------------------
+print("----------------separador-------------@------")
+consultaRegistro2(AutoPartes2(ventas1),2010)
+consultaRegistro2(AutoPartes2(ventas2),2001)
+consultaRegistro2(AutoPartes2(ventas3),9852)
+print("----------------separador--------------@-----")
+
 #   appEnd

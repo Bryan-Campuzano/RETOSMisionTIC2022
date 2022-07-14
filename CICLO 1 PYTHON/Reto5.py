@@ -11,7 +11,7 @@ import pandas as pd
 rutaFileCsv = 'https://github.com/luisguillermomolero/MisionTIC2022_2/blob/master/Modulo1_Python_MisionTIC2022_Main/Semana_5/Reto/movies.csv?raw=true'
 
 #------------------------ZONA DE CÓDIGO 1------------------------
-#-------------SOLUCIÓN 1 (NOTA OBTENIDA: PENDIENTE)--------------
+#-------------SOLUCIÓN 1 (NOTA OBTENIDA: 5.0)--------------
 """ este método, dada una ruta de acceso a un documento tipo csv, corrobora si es un archivo valido, de ser cierto
     genera un subconjunto con los valores de 'país', 'lenguaje' y 'ganancias brutas' retornando las primeras 10
     lineas. retorna un mensaje de error si el archivo esta vacío o no corresponde con el filtro, a su vez también

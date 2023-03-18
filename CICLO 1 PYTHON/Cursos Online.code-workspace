@@ -1,0 +1,22 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../G20"
+		},
+		{
+			"path": "../../Platzy"
+		},
+		{
+			"path": "../../LaunchX 2022"
+		}
+	],
+	"settings": {
+		"java.project.sourcePaths": [
+			"Java/Java por clases/Clases C2/UNIDAD 1/proyectoUnidad1/src",
+			"Java/Java por clases/Clases C2/UNIDAD 1/EjerciciosU1/Ejercicios/src"
+		]
+	}
+}
